@@ -10,7 +10,6 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <div class="logo">Sweet Bites</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -19,14 +18,14 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home">
+    <!-- Home Section -->
+    <header id="home">
         <div class="hero">
-            <h1>Delicious Food, Delivered Fast</h1>
-            <p>Explore a variety of meals and satisfy your cravings!</p>
-            <button onclick="orderNow()">Order Now</button>
+            <h1>Sweet Bites</h1>
+            <p>Delicious meals, delivered fast!</p>
+            <button onclick="openPopup('orderPopup')">Order Now</button>
         </div>
-    </section>
+    </header>
 
     <!-- Menu Section -->
     <section id="menu">
@@ -39,8 +38,25 @@
     <section id="cart">
         <h2>Your Cart</h2>
         <ul id="cart-items"></ul>
-        <button onclick="checkout()">Proceed to Checkout</button>
+        <button onclick="openPopup('checkoutPopup')">Checkout</button>
     </section>
+
+    <!-- Popups -->
+    <div id="orderPopup" class="popup">
+        <div class="popup-content">
+            <h3>Place Your Order</h3>
+            <p>Choose from our delicious menu and enjoy your meal!</p>
+            <button onclick="closePopup('orderPopup')">Close</button>
+        </div>
+    </div>
+
+    <div id="checkoutPopup" class="popup">
+        <div class="popup-content">
+            <h3>Checkout</h3>
+            <p>Items in your cart: <span id="cart-count">0</span></p>
+            <button onclick="closePopup('checkoutPopup')">Close</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
