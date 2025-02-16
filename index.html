@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sweet Bites | Food Menu</title>
+    <title>Sweet Bites | Online Food Ordering</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
     <header>
-        <h1>Welcome To our Website | Here are our menu</h1>
-        <input type="text" id="search" placeholder="Search food..." onkeyup="filterMenu()">
+        <h1>Sweet Bites</h1>
+        <p>Online Food Ordering – Order your favorite meals easily!</p>
     </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for food..." oninput="filterMenu()">
+    </div>
 
     <section id="food-items"></section>
 
-    <button onclick="checkout()">Proceed to Checkout</button>
-
-    <!-- Custom Popup -->
-    <div id="customPopup" class="popup">
-        <span class="close-btn" onclick="closePopup()">&times;</span>
-        <p id="popupMessage"></p>
-    </div>
-
-    <script src="script.js"></script>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
 
 </body>
 </html>
