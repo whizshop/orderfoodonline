@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasty Bites | Online Food Ordering</title>
+    <title>Sweet Bites | Online Food Ordering</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <nav>
+        <div class="logo">Sweet Bites</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -18,12 +19,12 @@
         </ul>
     </nav>
 
-    <!-- Home Section -->
+    <!-- Hero Section -->
     <section id="home">
         <div class="hero">
             <h1>Delicious Food, Delivered Fast</h1>
             <p>Explore a variety of meals and satisfy your cravings!</p>
-            <button onclick="login()">Order Now</button>
+            <button onclick="orderNow()">Order Now</button>
         </div>
     </section>
 
@@ -31,7 +32,6 @@
     <section id="menu">
         <h2>Our Menu</h2>
         <input type="text" id="search" placeholder="Search for your favorite food..." oninput="filterMenu()">
-        <p id="food-count">We have <span id="food-item-count">20</span> delicious items!</p>
         <div id="food-items" class="food-container"></div>
     </section>
 
@@ -39,13 +39,7 @@
     <section id="cart">
         <h2>Your Cart</h2>
         <ul id="cart-items"></ul>
-        <button onclick="checkout()">Checkout</button>
-    </section>
-
-    <!-- Profile Section -->
-    <section id="profile">
-        <h2>Your Profile</h2>
-        <p>Welcome back, <span id="username">Guest</span>!</p>
+        <button onclick="checkout()">Proceed to Checkout</button>
     </section>
 
     <script src="script.js"></script>
