@@ -3,31 +3,33 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     color: #333;
 }
 
 /* Navigation Bar */
 nav {
-    background-color: #222;
+    background-color: #ff5733;
     padding: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
 }
 
 nav ul {
     list-style-type: none;
-    padding: 0;
     display: flex;
     gap: 20px;
 }
 
-nav ul li {
-    display: inline;
-}
-
 nav a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
@@ -35,13 +37,14 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #007bff;
+    background-color: white;
+    color: #ff5733;
     border-radius: 5px;
 }
 
 /* Hero Section */
 .hero {
-    background: url('https://i.pinimg.com/736x/b0/e7/47/b0e747a8e32385349f1e10f0dbfdcabd.jpg') center/cover;
+    background: url('https://i.pinimg.com/736x/b0/e7/47/b0e747a8e32385349f1e10f0dbfdcabd.jpg') center/cover no-repeat;
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -63,18 +66,18 @@ nav a:hover {
 }
 
 button {
-    background-color: #007bff;
+    background-color: #ff5733;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #d8411a;
 }
 
 /* Menu Section */
