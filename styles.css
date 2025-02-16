@@ -1,70 +1,60 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     text-align: center;
-    margin: 0;
-    padding: 0;
+    background-color: #f8f8f8;
 }
 
 header {
-    background-color: #ff6b6b;
-    color: white;
+    background: linear-gradient(135deg, #ff6b6b, #ffa502);
     padding: 15px;
+    color: white;
+    font-size: 24px;
 }
 
 input {
-    width: 80%;
-    padding: 10px;
     margin-top: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    width: 60%;
+    font-size: 16px;
 }
 
-.food-container {
+#food-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
+    margin-top: 20px;
 }
 
 .food-item {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
     margin: 10px;
-    width: 250px;
+    width: 200px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .food-item img {
     width: 100%;
-    height: 150px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
-button {
-    background-color: #ffa502;
+.food-item button {
+    background: #ff6b6b;
     color: white;
     border: none;
-    padding: 10px 15px;
-    margin-top: 10px;
-    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
-    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #ff6b6b;
+.food-item button:hover {
+    background: #ffa502;
 }
 
-.checkout-btn {
-    background-color: #ff4757;
-    padding: 15px 20px;
-    font-size: 18px;
-}
-
-/* Popup Styling */
+/* Pop-up styling */
 .popup {
     display: none;
     position: fixed;
@@ -81,7 +71,7 @@ button:hover {
 }
 
 .popup-content {
-    color: #fff;
+    color: white;
     font-size: 18px;
     font-weight: bold;
 }
@@ -90,9 +80,9 @@ button:hover {
     float: right;
     font-size: 22px;
     cursor: pointer;
-    color: #fff;
+    color: white;
 }
 
 .close-btn:hover {
-    color: #000;
+    color: black;
 }
