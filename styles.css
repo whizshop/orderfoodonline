@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f8f8f8;
     color: #333;
+    line-height: 1.6;
 }
 
 /* Navigation */
@@ -12,6 +13,9 @@ nav {
     background-color: #ff5733;
     padding: 15px;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav ul {
@@ -28,6 +32,7 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
+    transition: background-color 0.3s ease;
 }
 
 nav a:hover {
@@ -37,22 +42,45 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    background: url('https://i.pinimg.com/736x/b0/e7/47/b0e747a8e32385349f1e10f0dbfdcabd.jpg') center/cover;
-    height: 50vh;
+    background: url('https://i.pinimg.com/736x/b0/e7/47/b0e747a8e32385349f1e10f0dbfdcabd.jpg') center/cover no-repeat;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
+    animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .hero h1 {
     font-size: 3rem;
+    margin: 0;
 }
 
 .hero p {
     font-size: 1.2rem;
+    margin: 10px 0 20px;
+}
+
+.hero button {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #ff2e00;
 }
 
 /* Menu */
@@ -62,18 +90,20 @@ nav a:hover {
 }
 
 #search {
-    width: 60%;
+    width: 80%;
+    max-width: 500px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
+    font-size: 1rem;
 }
 
 /* Food Items */
 .food-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
+    gap: 20px;
     padding: 20px;
 }
 
@@ -83,17 +113,39 @@ nav a:hover {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .food-item:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .food-item img {
     max-width: 100%;
     height: 150px;
     border-radius: 10px;
+    object-fit: cover;
+}
+
+.food-item p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.food-item button {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.food-item button:hover {
+    background-color: #ff2e00;
 }
 
 /* Popups */
@@ -107,6 +159,7 @@ nav a:hover {
     background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
+    z-index: 1001;
 }
 
 .popup-content {
@@ -114,6 +167,14 @@ nav a:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .popup button {
@@ -123,4 +184,34 @@ nav a:hover {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+    background-color: #ff2e00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    #search {
+        width: 90%;
+    }
+
+    .food-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
