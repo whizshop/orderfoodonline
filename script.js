@@ -9,11 +9,11 @@ const foodItems = [
 ];
 
 // Display Food Items
-function displayFoodItems() {
+function displayFoodItems(filteredItems = foodItems) {
     const foodContainer = document.getElementById('food-items');
     foodContainer.innerHTML = '';
 
-    foodItems.forEach(item => {
+    filteredItems.forEach(item => {
         const foodDiv = document.createElement('div');
         foodDiv.className = 'food-item';
         foodDiv.innerHTML = `
@@ -26,10 +26,23 @@ function displayFoodItems() {
 }
 
 // Cart
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
 function addToCart(itemName) {
     cart.push(itemName);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
     document.getElementById('cart-count').innerText = cart.length;
+}
+
+// Filter Menu
+function filterMenu() {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const filteredItems = foodItems.filter(item => item.name.toLowerCase().includes(searchTerm));
+    displayFoodItems(filteredItems);
 }
 
 // Popups
@@ -42,4 +55,7 @@ function closePopup(id) {
 }
 
 // Load
-displayFoodItems();
+document.addEventListener('DOMContentLoaded', () => {
+    displayFoodItems();
+    updateCartCount();
+});
