@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - Food Order</title>
+    <title>Shopping Cart</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
     <nav>
-        <div class="logo">FoodOrder</div>
+        <div class="logo">Food Order</div>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            <li><a href="cart.html">Cart</a></li>
         </ul>
     </nav>
 
-    <div class="cart-container">
-        <h1>Your Cart</h1>
-        <div id="cart-items" class="cart-list"></div>
-        <h2>Total: Ksh <span id="total-price">0</span></h2>
+    <h2 class="cart-title">Your Cart</h2>
+    
+    <div id="cart-list" class="cart-container"></div>
 
-        <div class="payment-section">
-            <label for="payment-ref">Enter Payment Reference:</label>
-            <input type="text" id="payment-ref" placeholder="e.g., M-Pesa Code">
-        </div>
+    <h3 id="total-price">Total: Ksh 0</h3>
 
-        <div class="cart-buttons">
-            <button onclick="placeOrder()">Place Order</button>
-            <button onclick="clearCart()">Clear Cart</button>
+    <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+
+    <!-- Beautiful Order Confirmation Popup -->
+    <div id="order-popup" class="popup">
+        <div class="popup-content">
+            <h2>Order Submitted Successfully!</h2>
+            <p>You'll receive an SMS when ready. Thank you!</p>
+            <button onclick="closePopup()">OK</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
