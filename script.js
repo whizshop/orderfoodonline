@@ -1,61 +1,64 @@
-// Food Items
-const foodItems = [
-    { name: "Pizza Kes 10000", img: "https://i.pinimg.com/736x/1e/a7/fc/1ea7fca510708ed25f97b2ca63809d32.jpg" },
-    { name: "Burger Kes 600", img: "https://i.pinimg.com/736x/eb/cb/c6/ebcbc6aaa9deca9d6efc1efc93b66945.jpg" },
-    { name: "Pasta Kes 750", img: "https://i.pinimg.com/736x/91/f4/75/91f475ea479986f068cc8a9fd7517bca.jpg" },
-    { name: "Sushi Kes 670", img: "https://i.pinimg.com/736x/ad/10/24/ad1024bec8ffd60319b5157195847ba5.jpg" },
-    { name: "Salad Kes 350", img: "https://i.pinimg.com/736x/45/73/d9/4573d97e97a507d2eadbe34261ad0b62.jpg" },
-    { name: "Tacos Kes 2100", img: "https://i.pinimg.com/736x/db/c4/c0/dbc4c003d5674030efe2173d2b8dcbce.jpg" }
-];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Display Food Items
-function displayFoodItems(filteredItems = foodItems) {
-    const foodContainer = document.getElementById('food-items');
-    foodContainer.innerHTML = '';
+function addToCart(name, price) {
+    let item = cart.find(i => i.name === name);
+    if (item) {
+        item.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart!");
+}
 
-    filteredItems.forEach(item => {
-        const foodDiv = document.createElement('div');
-        foodDiv.className = 'food-item';
-        foodDiv.innerHTML = `
-            <img src="${item.img}" alt="${item.name}">
-            <p>${item.name}</p>
-            <button onclick="addToCart('${item.name}')">Add to Cart</button>
+// Load Cart
+function loadCart() {
+    let cartTable = document.getElementById("cart-body");
+    let cartTotal = document.getElementById("cart-total");
+    cartTable.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td>${item.quantity}</td>
+            <td>${item.price * item.quantity}</td>
+            <td><button onclick="removeItem(${index})">Remove</button></td>
         `;
-        foodContainer.appendChild(foodDiv);
+        cartTable.appendChild(row);
+        total += item.price * item.quantity;
     });
+
+    cartTotal.innerText = total;
 }
 
-// Cart
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function addToCart(itemName) {
-    cart.push(itemName);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
+// Remove Item
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
 }
 
-function updateCartCount() {
-    document.getElementById('cart-count').innerText = cart.length;
-}
+// Checkout & Generate Ticket
+function checkout() {
+    let paymentRef = document.getElementById("payment-ref").value;
+    if (!paymentRef) {
+        alert("Please enter a payment reference.");
+        return;
+    }
 
-// Filter Menu
-function filterMenu() {
-    const searchTerm = document.getElementById('search').value.toLowerCase();
-    const filteredItems = foodItems.filter(item => item.name.toLowerCase().includes(searchTerm));
-    displayFoodItems(filteredItems);
-}
+    let ticketDetails = `
+        Order Time: ${new Date().toLocaleString()}<br>
+        Items Ordered:<br>
+        ${cart.map(i => `${i.quantity} x ${i.name} (Ksh ${i.price})`).join("<br>")}
+        <br>Total: Ksh ${document.getElementById("cart-total").innerText}
+        <br>Payment Ref: ${paymentRef}
+    `;
 
-// Popups
-function openPopup(id) {
-    document.getElementById(id).style.display = "flex";
-}
-
-function closePopup(id) {
-    document.getElementById(id).style.display = "none";
-}
-
-// Load
-document.addEventListener('DOMContentLoaded', () => {
-    displayFoodItems();
-    updateCartCount();
-});
+    document.getElementById("ticket-details").innerHTML = ticketDetails;
+    document.getElementById("ticket").style.display = "block";
+    localStorage.removeItem("cart");
+    cart = [];
+   
