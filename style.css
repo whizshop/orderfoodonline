@@ -1,9 +1,9 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Modern gradient background */
+    background: #f8f8f8;
     color: #333;
 }
 
@@ -91,8 +91,8 @@ button:hover {
 .cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    gap: 15px;
+    padding: 15px;
     background: white;
     margin: 10px 0;
     border-radius: 8px;
@@ -100,26 +100,36 @@ button:hover {
 }
 
 .cart-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
     object-fit: cover;
-    margin-right: 10px;
 }
 
-.cart-item p {
+.cart-item-details {
     flex: 1;
 }
 
-.cart-item button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    font-size: 18px;
+.cart-item-details p {
+    margin: 5px 0;
 }
 
-.cart-actions {
-    text-align: right;
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.total-price {
+    font-size: 20px;
+    font-weight: bold;
     margin-top: 20px;
+    text-align: right;
 }
 
 /* Popup Notification */
