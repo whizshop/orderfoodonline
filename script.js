@@ -8,19 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCartUI();
 
-    // Add to Cart Functionality
+    // Add to Cart
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", function () {
             const name = this.getAttribute("data-name");
             const price = parseFloat(this.getAttribute("data-price"));
             cart.push({ name, price });
             localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
+            updateCartUI();
             showPopup("✅ Item added to cart!");
         });
     });
 
-    // Place Order Functionality
+    // Place Order
     if (document.getElementById("place-order")) {
         document.getElementById("place-order").addEventListener("click", function () {
             if (cart.length > 0) {
@@ -32,6 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 showPopup("⚠️ Your cart is empty!");
             }
+        });
+    }
+
+    // Clear Cart
+    if (document.getElementById("clear-cart")) {
+        document.getElementById("clear-cart").addEventListener("click", function () {
+            cart = [];
+            localStorage.removeItem("cart");
+            updateCartUI();
+            showPopup("🗑️ Cart has been cleared!");
         });
     }
 
@@ -56,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartCount();
     }
 
-    // Show Popup Message
+    // Show Popup
     function showPopup(message) {
         popupMessage.textContent = message;
-        popup.style.display = "flex";
+        popup.style.display = "block";
     }
 
     // Close Popup
