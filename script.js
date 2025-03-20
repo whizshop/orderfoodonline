@@ -1,53 +1,40 @@
-function updateCart() {
-    const cartItemsContainer = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const totalPriceElement = document.getElementById("total-price");
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    cartItemsContainer.innerHTML = "";
-    let totalPrice = 0;
-
-    cart.forEach((item, index) => {
-        totalPrice += item.price;
-
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-
-        cartItem.innerHTML = `
-            <div class="cart-item-info">
-                <h3>${item.name}</h3>
-                <p>Ksh ${item.price}</p>
-            </div>
-            <img src="${item.image}" alt="${item.name}">
-            <button onclick="removeFromCart(${index})">Remove</button>
-        `;
-
-        cartItemsContainer.appendChild(cartItem);
-    });
-
-    totalPriceElement.textContent = totalPrice;
-    cartCount.textContent = cart.length;
-}
-
 function addToCart(name, price, image) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push({ name, price, image });
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCart();
+    alert(name + " added to cart!");
 }
 
-function removeFromCart(index) {
+function updateCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCart();
+    let cartContainer = document.getElementById("cart-list");
+    cartContainer.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        let cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>Ksh ${item.price}</p>
+            <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        
+        cartContainer.appendChild(cartItem);
+    });
+
+    document.getElementById("total-price").innerText = "Total: Ksh " + cart.reduce((sum, item) => sum + item.price, 0);
 }
 
-function clearCart() {
+function placeOrder() {
+    document.getElementById("order-popup").style.display = "flex";
     localStorage.removeItem("cart");
     updateCart();
 }
 
-function placeOrder() {
-    alert("Order placed successfully!");
-    clearCar
+function closePopup() {
+    document.getElementById("order-popup").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", updateCart);
