@@ -1,46 +1,79 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const cartCount = document.getElementById("cart-count");
-    const cartItemsList = document.getElementById("cart-items");
-    const totalPriceElement = document.getElementById("total-price");
-    const popup = document.getElementById("popup");
-    const popupMessage = document.getElementById("popup-message");
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    updateCartUI();
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCartCount();
 
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", function () {
-            const name = this.getAttribute("data-name");
-            const price = parseFloat(this.getAttribute("data-price"));
-            cart.push({ name, price });
+            const name = this.dataset.name;
+            const price = this.dataset.price;
+            const image = this.dataset.image;
+
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+
             localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartUI();
-            showPopup("✅ Added to Cart!");
+            updateCartCount();
+            showPopup("Item added to cart!");
         });
     });
 
-    if (document.getElementById("place-order")) {
-        document.getElementById("place-order").addEventListener("click", function () {
-            if (cart.length > 0) {
-                showPopup("🎉 Order Placed! You'll receive an SMS when it's ready.");
-                localStorage.removeItem("cart");
-                setTimeout(() => { window.location.href = "index.html"; }, 2000);
-            } else {
-                showPopup("⚠️ Your cart is empty!");
-            }
-        });
-    }
-
-    function updateCartUI() {
-        cartCount.textContent = cart.length;
+    function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     }
 
     function showPopup(message) {
-        popupMessage.textContent = message;
+        const popup = document.getElementById("popup");
+        popup.textContent = message;
         popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 2000);
     }
 
-    window.closePopup = function () {
-        popup.style.display = "none";
-    };
+    if (document.getElementById("cart-items")) {
+        renderCart();
+    }
+});
+
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = document.getElementById("cart-items");
+    cartContainer.innerHTML = "";
+
+    cart.forEach(item => {
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
+        itemDiv.innerHTML = `
+            <img src="${item.image}" width="80">
+            <p>${item.name} - Ksh ${item.price}</p>
+            <button onclick="updateQuantity('${item.name}', -1)">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQuantity('${item.name}', 1)">+</button>
+        `;
+        cartContainer.appendChild(itemDiv);
+    });
+}
+
+function updateQuantity(name, change) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let item = cart.find(item => item.name === name);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) cart = cart.filter(i => i.name !== name);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+    }
+}
+
+document.getElementById("place-order")?.addEventListener("click", function () {
+    showPopup("Order Submitted Successfully! You'll receive an SMS when ready. Thank you!");
+    localStorage.removeItem("cart");
+    renderCart();
+});
+
+document.getElementById("clear-cart")?.addEventListener("click", function () {
+    localStorage.removeItem("cart");
+    renderCart();
 });
