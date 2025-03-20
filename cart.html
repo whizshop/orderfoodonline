@@ -4,30 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
 
 <header>
-    <h1>Shopping Cart</h1>
+    <h1>Your Cart</h1>
     <nav>
         <a href="index.html">Home</a>
-        <a href="cart.html">View Cart (<span id="cart-count">0</span>)</a>
     </nav>
 </header>
 
-<ul id="cart-items"></ul>
-<p>Total Price: Ksh <span id="total-price">0</span></p>
+<div class="cart-container">
+    <div id="cart-items"></div>
+    <button id="clear-cart">Clear Cart</button>
+    <button id="place-order">Place Order</button>
+</div>
 
-<button id="clear-cart">Clear Cart</button>
-<button id="place-order">Place Order</button>
-
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <p id="popup-message"></p>
-        <button onclick="closePopup()">OK</button>
-    </div>
+<div id="order-popup" class="popup">
+    <p>Order Submitted Successfully!<br>You'll receive an SMS when ready. Thank you!</p>
 </div>
 
 </body>
