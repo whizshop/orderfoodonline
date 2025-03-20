@@ -1,40 +1,64 @@
-function addToCart(name, price, image) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name, price, image });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert(name + " added to cart!");
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCartDisplay();
 
-function updateCart() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let cartContainer = document.getElementById("cart-list");
-    cartContainer.innerHTML = "";
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", function () {
+            const name = this.getAttribute("data-name");
+            const price = parseFloat(this.getAttribute("data-price"));
+            const image = this.parentElement.querySelector("img").src;
 
-    cart.forEach((item, index) => {
-        let cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1, image });
+            }
 
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <p>Ksh ${item.price}</p>
-            <button onclick="removeFromCart(${index})">Remove</button>
-        `;
-        
-        cartContainer.appendChild(cartItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartDisplay();
+        });
     });
 
-    document.getElementById("total-price").innerText = "Total: Ksh " + cart.reduce((sum, item) => sum + item.price, 0);
-}
+    function updateCartDisplay() {
+        const cartContainer = document.querySelector(".cart-container");
+        if (!cartContainer) return;
 
-function placeOrder() {
-    document.getElementById("order-popup").style.display = "flex";
-    localStorage.removeItem("cart");
-    updateCart();
-}
+        cartContainer.innerHTML = "";
+        let total = 0;
 
-function closePopup() {
-    document.getElementById("order-popup").style.display = "none";
-}
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
 
-document.addEventListener("DOMContentLoaded", updateCart);
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <p>${item.name} - Ksh ${item.price} x ${item.quantity}</p>
+                <button class="remove-item" data-index="${index}">Remove</button>
+            `;
+
+            cartContainer.appendChild(cartItem);
+        });
+
+        const checkoutButton = document.createElement("button");
+        checkoutButton.classList.add("checkout-btn");
+        checkoutButton.textContent = `Checkout (Total: Ksh ${total})`;
+        checkoutButton.addEventListener("click", function () {
+            alert("Order Submitted Successfully!\nYou'll receive an SMS when ready.\nThank you!");
+            localStorage.removeItem("cart");
+            location.reload();
+        });
+
+        cartContainer.appendChild(checkoutButton);
+
+        document.querySelectorAll(".remove-item").forEach(button => {
+            button.addEventListener("click", function () {
+                const index = this.getAttribute("data-index");
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay();
+            });
+        });
+    }
+});
