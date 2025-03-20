@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Shopping Cart</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">View Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
 
-    <nav>
-        <div class="logo">Food Order</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cart.html">Cart</a></li>
-        </ul>
-    </nav>
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: Ksh <span id="total-price">0</span></p>
+    <button id="place-order">Place Order</button>
 
-    <h2 class="cart-title">Your Cart</h2>
-    
-    <div id="cart-list" class="cart-container"></div>
-
-    <h3 id="total-price">Total: Ksh 0</h3>
-
-    <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
-    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
-
-    <!-- Beautiful Order Confirmation Popup -->
-    <div id="order-popup" class="popup">
+    <!-- ✅ HTML-Based Popup -->
+    <div id="popup" class="popup">
         <div class="popup-content">
-            <h2>Order Submitted Successfully!</h2>
-            <p>You'll receive an SMS when ready. Thank you!</p>
+            <p id="popup-message">Order Submitted Successfully! You’ll receive an SMS when it’s ready. Thank you!</p>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
