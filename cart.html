@@ -8,18 +8,28 @@
 </head>
 <body>
 
-    <div class="container">
+    <nav>
+        <div class="logo">FoodOrder</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <div class="cart-container">
         <h1>Your Cart</h1>
         <div id="cart-items" class="cart-list"></div>
         <h2>Total: Ksh <span id="total-price">0</span></h2>
-        
+
         <div class="payment-section">
             <label for="payment-ref">Enter Payment Reference:</label>
             <input type="text" id="payment-ref" placeholder="e.g., M-Pesa Code">
         </div>
 
-        <button onclick="placeOrder()">Place Order</button>
-        <button onclick="clearCart()">Clear Cart</button>
+        <div class="cart-buttons">
+            <button onclick="placeOrder()">Place Order</button>
+            <button onclick="clearCart()">Clear Cart</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
