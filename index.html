@@ -3,218 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Ordering System</title>
+    <title>Food Ordering</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Delicious Food Menu</h1>
-        <button onclick="window.location.href='cart.html'">🛒 View Cart (<span id="cart-count">0</span>)</button>
+        <h1>Food Ordering System</h1>
+        <nav>
+            <a href="cart.html">View Cart</a>
+        </nav>
     </header>
 
-    <div class="menu">
-        <!-- Breakfast Section -->
+    <section class="menu">
         <h2>Breakfast</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('Pancakes', 250, 'images/pancakes.jpg')">
-                <img src="images/pancakes.jpg" alt="Pancakes">
-                <h3>Pancakes</h3>
-                <p>Ksh 250</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Omelette', 300, 'images/omelette.jpg')">
-                <img src="images/omelette.jpg" alt="Omelette">
-                <h3>Omelette</h3>
-                <p>Ksh 300</p>
-            </div>
-            <div class="food-box" onclick="addToCart('French Toast', 280, 'images/french-toast.jpg')">
-                <img src="images/french-toast.jpg" alt="French Toast">
-                <h3>French Toast</h3>
-                <p>Ksh 280</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Breakfast Burrito', 350, 'images/breakfast-burrito.jpg')">
-                <img src="images/breakfast-burrito.jpg" alt="Breakfast Burrito">
-                <h3>Breakfast Burrito</h3>
-                <p>Ksh 350</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Avocado Toast', 270, 'images/avocado-toast.jpg')">
-                <img src="images/avocado-toast.jpg" alt="Avocado Toast">
-                <h3>Avocado Toast</h3>
-                <p>Ksh 270</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Scrambled Eggs & Bacon', 400, 'images/scrambled-eggs-bacon.jpg')">
-                <img src="images/scrambled-eggs-bacon.jpg" alt="Scrambled Eggs & Bacon">
-                <h3>Scrambled Eggs & Bacon</h3>
-                <p>Ksh 400</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Waffles with Syrup', 300, 'images/waffles-syrup.jpg')">
-                <img src="images/waffles-syrup.jpg" alt="Waffles with Syrup">
-                <h3>Waffles with Syrup</h3>
-                <p>Ksh 300</p>
-            </div>
+        <div class="menu-grid">
+            <div class="menu-item"><img src="images/pancakes.jpg"><p>Pancakes - Ksh 250</p><button class="add-to-cart" data-name="Pancakes" data-price="250">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/omelette.jpg"><p>Omelette - Ksh 200</p><button class="add-to-cart" data-name="Omelette" data-price="200">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/french-toast.jpg"><p>French Toast - Ksh 230</p><button class="add-to-cart" data-name="French Toast" data-price="230">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/breakfast-burrito.jpg"><p>Breakfast Burrito - Ksh 280</p><button class="add-to-cart" data-name="Breakfast Burrito" data-price="280">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/avocado-toast.jpg"><p>Avocado Toast - Ksh 220</p><button class="add-to-cart" data-name="Avocado Toast" data-price="220">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/scrambled-eggs-bacon.jpg"><p>Scrambled Eggs & Bacon - Ksh 300</p><button class="add-to-cart" data-name="Scrambled Eggs & Bacon" data-price="300">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/waffles-syrup.jpg"><p>Waffles with Syrup - Ksh 270</p><button class="add-to-cart" data-name="Waffles with Syrup" data-price="270">Add to Cart</button></div>
         </div>
 
-        <!-- Lunch Section -->
         <h2>Lunch</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('Grilled Chicken Salad', 550, 'images/grilled-chicken-salad.jpg')">
-                <img src="images/grilled-chicken-salad.jpg" alt="Grilled Chicken Salad">
-                <h3>Grilled Chicken Salad</h3>
-                <p>Ksh 550</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Beef Burger', 600, 'images/beef-burger.jpg')">
-                <img src="images/beef-burger.jpg" alt="Beef Burger">
-                <h3>Beef Burger</h3>
-                <p>Ksh 600</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Vegetable Sandwich', 450, 'images/vegetable-sandwich.jpg')">
-                <img src="images/vegetable-sandwich.jpg" alt="Vegetable Sandwich">
-                <h3>Vegetable Sandwich</h3>
-                <p>Ksh 450</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Spaghetti Bolognese', 700, 'images/spaghetti-bolognese.jpg')">
-                <img src="images/spaghetti-bolognese.jpg" alt="Spaghetti Bolognese">
-                <h3>Spaghetti Bolognese</h3>
-                <p>Ksh 700</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Chicken Wrap', 500, 'images/chicken-wrap.jpg')">
-                <img src="images/chicken-wrap.jpg" alt="Chicken Wrap">
-                <h3>Chicken Wrap</h3>
-                <p>Ksh 500</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Fried Rice with Chicken', 600, 'images/fried-rice-chicken.jpg')">
-                <img src="images/fried-rice-chicken.jpg" alt="Fried Rice with Chicken">
-                <h3>Fried Rice with Chicken</h3>
-                <p>Ksh 600</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Fish & Chips', 750, 'images/fish-and-chips.jpg')">
-                <img src="images/fish-and-chips.jpg" alt="Fish & Chips">
-                <h3>Fish & Chips</h3>
-                <p>Ksh 750</p>
-            </div>
+        <div class="menu-grid">
+            <div class="menu-item"><img src="images/grilled-chicken-salad.jpg"><p>Grilled Chicken Salad - Ksh 450</p><button class="add-to-cart" data-name="Grilled Chicken Salad" data-price="450">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/beef-burger.jpg"><p>Beef Burger - Ksh 400</p><button class="add-to-cart" data-name="Beef Burger" data-price="400">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/vegetable-sandwich.jpg"><p>Vegetable Sandwich - Ksh 350</p><button class="add-to-cart" data-name="Vegetable Sandwich" data-price="350">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/spaghetti-bolognese.jpg"><p>Spaghetti Bolognese - Ksh 500</p><button class="add-to-cart" data-name="Spaghetti Bolognese" data-price="500">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/chicken-wrap.jpg"><p>Chicken Wrap - Ksh 380</p><button class="add-to-cart" data-name="Chicken Wrap" data-price="380">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/fried-rice-chicken.jpg"><p>Fried Rice with Chicken - Ksh 450</p><button class="add-to-cart" data-name="Fried Rice with Chicken" data-price="450">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/fish-and-chips.jpg"><p>Fish & Chips - Ksh 420</p><button class="add-to-cart" data-name="Fish & Chips" data-price="420">Add to Cart</button></div>
         </div>
-        <!-- Dinner Section -->
+        
+
         <h2>Dinner</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('Grilled Steak', 1200, 'images/grilled-steak.jpg')">
-                <img src="images/grilled-steak.jpg" alt="Grilled Steak">
-                <h3>Grilled Steak</h3>
-                <p>Ksh 1200</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Roast Chicken', 1000, 'images/roast-chicken.jpg')">
-                <img src="images/roast-chicken.jpg" alt="Roast Chicken">
-                <h3>Roast Chicken</h3>
-                <p>Ksh 1000</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Vegetable Stir Fry', 750, 'images/vegetable-stir-fry.jpg')">
-                <img src="images/vegetable-stir-fry.jpg" alt="Vegetable Stir Fry">
-                <h3>Vegetable Stir Fry</h3>
-                <p>Ksh 750</p>
-            </div>
-            <div class="food-box" onclick="addToCart('BBQ Ribs', 1300, 'images/bbq-ribs.jpg')">
-                <img src="images/bbq-ribs.jpg" alt="BBQ Ribs">
-                <h3>BBQ Ribs</h3>
-                <p>Ksh 1300</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Seafood Pasta', 1100, 'images/seafood-pasta.jpg')">
-                <img src="images/seafood-pasta.jpg" alt="Seafood Pasta">
-                <h3>Seafood Pasta</h3>
-                <p>Ksh 1100</p>
-            </div>
+        <div class="menu-grid">
+            <div class="menu-item"><img src="images/steak-mashed-potatoes.jpg"><p>Steak & Mashed Potatoes - Ksh 600</p><button class="add-to-cart" data-name="Steak & Mashed Potatoes" data-price="600">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/grilled-salmon.jpg"><p>Grilled Salmon - Ksh 750</p><button class="add-to-cart" data-name="Grilled Salmon" data-price="750">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/stuffed-bell-peppers.jpg"><p>Stuffed Bell Peppers - Ksh 480</p><button class="add-to-cart" data-name="Stuffed Bell Peppers" data-price="480">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/chicken-alfredo.jpg"><p>Chicken Alfredo - Ksh 550</p><button class="add-to-cart" data-name="Chicken Alfredo" data-price="550">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/lamb-chops.jpg"><p>Lamb Chops - Ksh 800</p><button class="add-to-cart" data-name="Lamb Chops" data-price="800">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/vegetable-lasagna.jpg"><p>Vegetable Lasagna - Ksh 480</p><button class="add-to-cart" data-name="Vegetable Lasagna" data-price="480">Add to Cart</button></div>
+            <div class="menu-item"><img src="images/beef-stir-fry.jpg"><p>Beef Stir Fry - Ksh 550</p><button class="add-to-cart" data-name="Beef Stir Fry" data-price="550">Add to Cart</button></div>
         </div>
-
-        <!-- Desserts Section -->
         <h2>Desserts</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('Chocolate Cake', 450, 'images/chocolate-cake.jpg')">
-                <img src="images/chocolate-cake.jpg" alt="Chocolate Cake">
-                <h3>Chocolate Cake</h3>
-                <p>Ksh 450</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Ice Cream Sundae', 400, 'images/ice-cream-sundae.jpg')">
-                <img src="images/ice-cream-sundae.jpg" alt="Ice Cream Sundae">
-                <h3>Ice Cream Sundae</h3>
-                <p>Ksh 400</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Fruit Tart', 500, 'images/fruit-tart.jpg')">
-                <img src="images/fruit-tart.jpg" alt="Fruit Tart">
-                <h3>Fruit Tart</h3>
-                <p>Ksh 500</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Cheesecake', 550, 'images/cheesecake.jpg')">
-                <img src="images/cheesecake.jpg" alt="Cheesecake">
-                <h3>Cheesecake</h3>
-                <p>Ksh 550</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Brownies', 350, 'images/brownies.jpg')">
-                <img src="images/brownies.jpg" alt="Brownies">
-                <h3>Brownies</h3>
-                <p>Ksh 350</p>
-            </div>
-        </div>
+<div class="menu-grid">
+    <div class="menu-item"><img src="images/chocolate-cake.jpg"><p>Chocolate Cake - Ksh 350</p><button class="add-to-cart" data-name="Chocolate Cake" data-price="350">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/strawberry-cheesecake.jpg"><p>Strawberry Cheesecake - Ksh 400</p><button class="add-to-cart" data-name="Strawberry Cheesecake" data-price="400">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/apple-pie.jpg"><p>Apple Pie - Ksh 300</p><button class="add-to-cart" data-name="Apple Pie" data-price="300">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/tiramisu.jpg"><p>Tiramisu - Ksh 450</p><button class="add-to-cart" data-name="Tiramisu" data-price="450">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/ice-cream-sundae.jpg"><p>Ice Cream Sundae - Ksh 250</p><button class="add-to-cart" data-name="Ice Cream Sundae" data-price="250">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/banana-split.jpg"><p>Banana Split - Ksh 320</p><button class="add-to-cart" data-name="Banana Split" data-price="320">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/brownies.jpg"><p>Brownies - Ksh 280</p><button class="add-to-cart" data-name="Brownies" data-price="280">Add to Cart</button></div>
+</div>
 
-        <!-- Drinks Section -->
-        <h2>Drinks</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('Fresh Orange Juice', 250, 'images/orange-juice.jpg')">
-                <img src="images/orange-juice.jpg" alt="Fresh Orange Juice">
-                <h3>Fresh Orange Juice</h3>
-                <p>Ksh 250</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Iced Coffee', 300, 'images/iced-coffee.jpg')">
-                <img src="images/iced-coffee.jpg" alt="Iced Coffee">
-                <h3>Iced Coffee</h3>
-                <p>Ksh 300</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Milkshake', 350, 'images/milkshake.jpg')">
-                <img src="images/milkshake.jpg" alt="Milkshake">
-                <h3>Milkshake</h3>
-                <p>Ksh 350</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Herbal Tea', 200, 'images/herbal-tea.jpg')">
-                <img src="images/herbal-tea.jpg" alt="Herbal Tea">
-                <h3>Herbal Tea</h3>
-                <p>Ksh 200</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Mango Smoothie', 400, 'images/mango-smoothie.jpg')">
-                <img src="images/mango-smoothie.jpg" alt="Mango Smoothie">
-                <h3>Mango Smoothie</h3>
-                <p>Ksh 400</p>
-            </div>
-        </div>
+<h2>Drinks</h2>
+<div class="menu-grid">
+    <div class="menu-item"><img src="images/iced-coffee.jpg"><p>Iced Coffee - Ksh 250</p><button class="add-to-cart" data-name="Iced Coffee" data-price="250">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/fresh-orange-juice.jpg"><p>Fresh Orange Juice - Ksh 200</p><button class="add-to-cart" data-name="Fresh Orange Juice" data-price="200">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/milkshake.jpg"><p>Milkshake - Ksh 300</p><button class="add-to-cart" data-name="Milkshake" data-price="300">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/fruit-smoothie.jpg"><p>Fruit Smoothie - Ksh 280</p><button class="add-to-cart" data-name="Fruit Smoothie" data-price="280">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/hot-chocolate.jpg"><p>Hot Chocolate - Ksh 350</p><button class="add-to-cart" data-name="Hot Chocolate" data-price="350">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/green-tea.jpg"><p>Green Tea - Ksh 180</p><button class="add-to-cart" data-name="Green Tea" data-price="180">Add to Cart</button></div>
+</div>
 
-        <!-- Snacks Section -->
-        <h2>Snacks</h2>
-        <div class="food-grid">
-            <div class="food-box" onclick="addToCart('French Fries', 350, 'images/french-fries.jpg')">
-                <img src="images/french-fries.jpg" alt="French Fries">
-                <h3>French Fries</h3>
-                <p>Ksh 350</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Popcorn', 250, 'images/popcorn.jpg')">
-                <img src="images/popcorn.jpg" alt="Popcorn">
-                <h3>Popcorn</h3>
-                <p>Ksh 250</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Spring Rolls', 400, 'images/spring-rolls.jpg')">
-                <img src="images/spring-rolls.jpg" alt="Spring Rolls">
-                <h3>Spring Rolls</h3>
-                <p>Ksh 400</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Chicken Nuggets', 500, 'images/chicken-nuggets.jpg')">
-                <img src="images/chicken-nuggets.jpg" alt="Chicken Nuggets">
-                <h3>Chicken Nuggets</h3>
-                <p>Ksh 500</p>
-            </div>
-            <div class="food-box" onclick="addToCart('Potato Wedges', 300, 'images/potato-wedges.jpg')">
-                <img src="images/potato-wedges.jpg" alt="Potato Wedges">
-                <h3>Potato Wedges</h3>
-                <p>Ksh 300</p>
-            </div>
-        </div>
+<h2>Snacks</h2>
+<div class="menu-grid">
+    <div class="menu-item"><img src="images/french-fries.jpg"><p>French Fries - Ksh 200</p><button class="add-to-cart" data-name="French Fries" data-price="200">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/popcorn.jpg"><p>Popcorn - Ksh 150</p><button class="add-to-cart" data-name="Popcorn" data-price="150">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/nachos-cheese.jpg"><p>Nachos with Cheese - Ksh 300</p><button class="add-to-cart" data-name="Nachos with Cheese" data-price="300">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/chicken-wings.jpg"><p>Chicken Wings - Ksh 450</p><button class="add-to-cart" data-name="Chicken Wings" data-price="450">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/spring-rolls.jpg"><p>Spring Rolls - Ksh 350</p><button class="add-to-cart" data-name="Spring Rolls" data-price="350">Add to Cart</button></div>
+    <div class="menu-item"><img src="images/garlic-bread.jpg"><p>Garlic Bread - Ksh 250</p><button class="add-to-cart" data-name="Garlic Bread" data-price="250">Add to Cart</button></div>
+</div>
+    </section>
 
-    </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
-
