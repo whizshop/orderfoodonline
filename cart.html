@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div class="cart-container">
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price (Ksh)</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- Cart Items Here -->
+            </tbody>
+        </table>
+        <h2>Total: Ksh <span id="cart-total">0</span></h2>
+        <input type="text" id="payment-ref" placeholder="Enter Payment Reference">
+        <button onclick="checkout()">Place Order</button>
+    </div>
+
+    <div id="ticket">
+        <h2>Order Ticket</h2>
+        <p id="ticket-details"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
